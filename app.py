@@ -36,6 +36,12 @@ def fixProduct(product_name):
         item[0]['marca'] = request.json['marca']
         return jsonify(item)
     return jsonify({"message": "items match not found", "products": products})
+
+@app.route('/products/<string:product_name>' , methods=['DELETE'])
+def deleteItem(product_name):
+    item = [ i for i in products if i['name'] == product_name]
+    products.remove(item[0])
+    return jsonify({"new list": products})
      
    
 
